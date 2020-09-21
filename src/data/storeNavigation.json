@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Featured Products",
+    "link": "/featured-products"
+  },
+  {
+    "label": "Market Boxes",
+    "link": "/market-boxes"
+  },
+  {
+    "label": "Produce",
+    "link": "/produce"
+  },
+  {
+    "label": "Deals",
+    "link": "/deals"
+  },
+  {
+    "label": "Pantry",
+    "link": "/pantry"
+  },
+  {
+    "label": "Coffee, Tea & Chocolate",
+    "link": "/coffee-tea-and-chocolate"
+  }
+]
