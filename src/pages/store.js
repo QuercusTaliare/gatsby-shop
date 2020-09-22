@@ -19,8 +19,6 @@ const Store = () => {
   
   `)
 
-  console.log(data.allStoreNavigationJson.edges);
-
 
   return (
     <Layout>
@@ -31,7 +29,7 @@ const Store = () => {
           {data.allStoreNavigationJson.edges.map(edge => {
             return (
               <li>
-                <Link to={edge.node.link}>{edge.node.label}</Link>
+                <Link to={`/store/${edge.node.link}`}>{edge.node.label}</Link>
               </li>
             )
           })}

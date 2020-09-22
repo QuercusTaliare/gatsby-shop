@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Country Sourdough Loaf",
+    "img": "../assets/country-sourdough-loaf.jpg",
+    "supplier": "Dear Grain",
+    "price": 795,
+    "desc": "The Classic Country Loaf is a fan favourite. This nutritious, naturally leavened sourdough is naturally sweet with a bit of earth and a touch of tang. With a soft and tender crumb, it’s an elevated take on your everyday sourdough.",
+    "categories": [
+      "featured-products",
+      "bakery"
+    ]
+  },
+  {
+    "name": "Spearhead Oktoberfest (beer)",
+    "img": "../assets/spearhead-oktoberfest-beer.jpg",
+    "supplier": "Spearhead Brewing Company",
+    "price": 375,
+    "desc": "Spearhead’s Oktoberfest Lager represents the way Bavarians celebrate Oktoberfest. It’s a 5.8% fuller-body, moderately-hopped, seasonal lager. It has a copper-red colour, great mouthfeel, and lots of flavour. Prost!",
+    "categories": [
+      "featured-products",
+      "local-beer-and-wine"
+    ]
+  }
+
+]
