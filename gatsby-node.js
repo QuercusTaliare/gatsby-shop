@@ -11,6 +11,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             link
+            label
           }
         }
       }
@@ -23,7 +24,8 @@ module.exports.createPages = async ({ graphql, actions }) => {
       component: productsTemplate,
       path: `/store/${edge.node.link}`,
       context: {
-        slug: edge.node.link
+        slug: edge.node.link,
+        title: edge.node.label
       }
     })
   })

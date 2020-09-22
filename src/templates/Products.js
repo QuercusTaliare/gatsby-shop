@@ -29,22 +29,32 @@ const Products = (props) => {
   return (
     <Layout>
 
+      <h2>{props.pageContext.title}</h2>
+
       <ul>
         {data.allInventoryJson.edges.map((edge) => {
-          edge.node.categories.forEach((category) => {
-            if (category === props.pageContext.slug) {
-              // return (
-              //   <li>
-              //     <h2>Blah</h2>
-              //   </li>
-              // )
 
-              console.log(edge.node.name)
-            } 
 
-            // console.log(category, props.pageContext.slug)
+          // edge.node.categories.map((category) => {
+
+          //   console.log(category, props.pageContext.slug)
+
+          //   if (category === props.pageContext.slug) {
+          //     return (
+          //       <li>
+          //         <h2>Blah</h2>
+          //       </li>
+          //     )
               
-          })
+          //   } else {
+          //     return
+          //   }
+    
+          // })
+
+          
+
+
         })}
       </ul>
       
