@@ -8,7 +8,8 @@
     "categories": [
       "featured-products",
       "bakery"
-    ]
+    ],
+    "slug": "country-sourdough-loaf"
   },
   {
     "name": "Spearhead Oktoberfest (beer)",
@@ -19,7 +20,9 @@
     "categories": [
       "featured-products",
       "local-beer-and-wine"
-    ]
+    ],
+    "slug": "spearhead-oktoberfest-beer"
+
   }
 
 ]
