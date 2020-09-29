@@ -66,7 +66,8 @@ const turnProductsIntoPages = async ({ graphql, actions }) => {
       path: `/product/${product.node.slug}`,
       context: {
         slug: product.node.slug,
-        title: product.node.name
+        title: product.node.name,
+        img: product.node.img
       }
     })
   })

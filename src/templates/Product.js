@@ -1,27 +1,14 @@
 import React from 'react';
-import { Link, graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
 import Layout from '../components/Layout';
 import StoreLayout from '../components/StoreLayout';
 
 
-const Product = () => {
+const Product = ({ data }) => {
 
-  const data = useStaticQuery(graphql`
-  
-    query {
-      inventoryJson {
-        name
-      }
-    }
-
-  `)
-
-  // const { name, desc, img, price, supplier } = data.allInventoryJson.edges.node;
-
-  console.log(data.inventoryJson);
-
-  const { name } = data.inventoryJson;
+  const { name, desc, img, price, supplier, slug } = data.inventoryJson;
 
   return (
     <Layout>
@@ -29,6 +16,14 @@ const Product = () => {
       <StoreLayout>
 
         <h2>{name}</h2>
+        <p>{desc}</p>
+        <p>{price}</p>
+        <p>{supplier}</p>
+        <Img 
+          fixed={data.file.childImageSharp.fixed}
+          alt={name}
+        />
+
 
       </StoreLayout>
 
@@ -37,3 +32,31 @@ const Product = () => {
 }
 
 export default Product;
+
+export const data = graphql`
+
+  query($slug: String!, $img: String!) {
+      inventoryJson(slug: { eq: $slug }) {
+        name
+        desc
+        price
+        img
+        supplier
+        slug
+      }
+      file(relativePath: { eq: $img }) {
+        id
+        childImageSharp {
+          fixed(
+            width: 200
+          ) {
+            ...GatsbyImageSharpFixed
+          }
+          fluid(maxWidth: 400) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+  }
+
+`;

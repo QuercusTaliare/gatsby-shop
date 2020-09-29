@@ -8,6 +8,7 @@ const StoreLayout = ({ children }) => {
       allStoreNavigationJson {
         edges {
           node {
+            id
             label
             link
           }
@@ -29,7 +30,7 @@ const StoreLayout = ({ children }) => {
           </li>
           {data.allStoreNavigationJson.edges.map(edge => {
             return (
-              <li>
+              <li key={edge.node.id}>
                 <Link to={`/store/${edge.node.link}`}>{edge.node.label}</Link>
               </li>
             )
