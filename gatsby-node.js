@@ -3,8 +3,10 @@ const path = require('path');
 // TURN CATEGORIES INTO NAVIGATION function
 const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
 
+  // Choose which template is to be used
   const productCategoriesTemplate = path.resolve('./src/templates/ProductCategories.js');
 
+  // Query the necessary data to create a page
   const { data } = await graphql(`
   
     query {
@@ -18,10 +20,23 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
         }
       }
 
+      products: allInventoryJson {
+        totalCount
+        nodes {
+          name
+          desc
+          categories
+          price
+          supplier
+          slug
+        }
+      }
+
     }
   
   `)
-
+  
+  // Create pages
   data.allStoreNavigationJson.edges.forEach(category => {
     actions.createPage({
       component: productCategoriesTemplate,
@@ -29,6 +44,26 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
       context: {
         slug: category.node.link,
         title: category.node.label,
+      }
+    })
+  })
+
+  // Figure out how many pages there are based on how many products there are and how many products are wanted on each page.
+  const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
+  const pageCount = (Math.ceil(data.products.totalCount / pageSize));
+  console.log(`There are ${data.products.totalCount} total people. And we have ${pageCount} pages with ${pageSize} per page.`)
+
+
+  // Loop from 1 to n and create pages for each of them
+  Array.from({ length: pageCount }).forEach((_, i) => {
+    console.log(`Creating page ${i}`);
+    actions.createPage({
+      path: `/store/${category.node.link}/${i + 1}`,
+      component: path.resolve('./src/templates/ProductCategories.js'),
+      context: {
+        skip: i * pageSize,
+        currentPage: i + 1,
+        pageSize,
       }
     })
   })

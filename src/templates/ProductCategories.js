@@ -3,13 +3,23 @@ import { Link, graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 import StoreLayout from '../components/StoreLayout';
+import Pagination from '../components/Pagination';
 
 const ProductCategories = (props) => {
+
+  // console.clear();
+  // console.log(props.data.allInventoryJson.totalCount);
 
   return (
     <Layout>
 
       <StoreLayout>
+
+        {/* <Pagination 
+          pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
+          totalCount={props.data.allInventoryJson.totalCount}
+          currentPage={pageContext.currentPage || 1}
+        /> */}
 
         <h2>{props.pageContext.title}</h2>
 

@@ -4,6 +4,10 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+const dotenv = require('dotenv');
+
+dotenv.config({ path: '.env' });
+
 module.exports = {
   /* Your site config here */
   
