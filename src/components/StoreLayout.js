@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
+import Search from './Search';
 
 const StoreLayout = ({ children }) => {
 

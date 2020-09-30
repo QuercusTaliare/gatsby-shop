@@ -6,7 +6,7 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
   // Choose which template is to be used
   const productCategoriesTemplate = path.resolve('./src/templates/ProductCategories.js');
 
-  // Query the necessary data to create a page
+  // Query the necessary data to create a storeNavigation from the list of categories
   const { data } = await graphql(`
   
     query {
@@ -36,8 +36,11 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
   
   `)
   
+  
+
   // Create pages
   data.allStoreNavigationJson.edges.forEach(category => {
+    
     actions.createPage({
       component: productCategoriesTemplate,
       path: `/store/${category.node.link}`,
@@ -46,27 +49,27 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
         title: category.node.label,
       }
     })
+
   })
 
   // Figure out how many pages there are based on how many products there are and how many products are wanted on each page.
-  const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
-  const pageCount = (Math.ceil(data.products.totalCount / pageSize));
-  console.log(`There are ${data.products.totalCount} total people. And we have ${pageCount} pages with ${pageSize} per page.`)
-
+  // const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
+  // const pageCount = (Math.ceil(data.products.totalCount / pageSize));
+  // console.log(`There are ${data.products.totalCount} total products. And we have ${pageCount} pages with ${pageSize} per page.`)
 
   // Loop from 1 to n and create pages for each of them
-  Array.from({ length: pageCount }).forEach((_, i) => {
-    console.log(`Creating page ${i}`);
-    actions.createPage({
-      path: `/store/${category.node.link}/${i + 1}`,
-      component: path.resolve('./src/templates/ProductCategories.js'),
-      context: {
-        skip: i * pageSize,
-        currentPage: i + 1,
-        pageSize,
-      }
-    })
-  })
+    // Array.from({ length: pageCount }).forEach((_, i) => {
+    //   console.log(`Creating page ${i}`);
+    //   actions.createPage({
+    //     path: `/store/${category.node.link}/${i + 1}`,
+    //     component: path.resolve('./src/templates/ProductCategories.js'),
+    //     context: {
+    //       skip: i * pageSize,
+    //       currentPage: i + 1,
+    //       pageSize,
+    //     }
+    //   })
+    // })
 
 } // Turn Categories Into Pages function ENDS
 

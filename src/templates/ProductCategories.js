@@ -7,9 +7,6 @@ import Pagination from '../components/Pagination';
 
 const ProductCategories = (props) => {
 
-  // console.clear();
-  // console.log(props.data.allInventoryJson.totalCount);
-
   return (
     <Layout>
 
