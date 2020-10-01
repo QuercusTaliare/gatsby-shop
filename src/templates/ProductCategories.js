@@ -3,9 +3,12 @@ import { Link, graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 import StoreLayout from '../components/StoreLayout';
-import Pagination from '../components/Pagination';
+import manageOrder from '../utils/manageOrder';
+// import Pagination from '../components/Pagination';
 
 const ProductCategories = (props) => {
+
+  const { order, addToOrder, removeFromOrder } = manageOrder();
 
   return (
     <Layout>
@@ -36,7 +39,12 @@ const ProductCategories = (props) => {
                 <p>{`$ ${price / 100}`}</p>
                 <p>{supplier}</p>
                 <p>{desc}</p>
-                <button type="button">Add To Cart</button>
+                <button 
+                  type="button" 
+                  onClick={() => addToOrder({ id: id, name: name })}
+                >
+                  Add To Cart
+                </button>
               </li>
             )
           })}
