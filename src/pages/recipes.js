@@ -19,8 +19,6 @@ export default function RecipesPage() {
             src={recipe.photoUrl} 
             alt={recipe.title}
             height="400"
-          
-            
           />
         </div>
       ))}

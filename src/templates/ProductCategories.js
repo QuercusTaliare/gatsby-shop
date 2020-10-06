@@ -2,7 +2,9 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
+// A navigation bar for the Store
 import StoreLayout from '../components/StoreLayout';
+// A utility function that allows you to manage state in Context for your order
 import manageOrder from '../utils/manageOrder';
 // import Pagination from '../components/Pagination';
 
