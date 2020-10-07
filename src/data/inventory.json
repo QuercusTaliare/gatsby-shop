@@ -58,6 +58,26 @@
       "Oat-Mylk Chocolate",
       "Oat-Mylk Cappunccino Chocolate"
     ]
+  },
+  {
+    "name": "Vegan Cheesecake (Whole)",
+    "img": "",
+    "supplier": "Dundurn Market",
+    "price": 4500,
+    "desc": " Our vegan cheesecake is deep and delicious and usually sells out before we can make another! Cashew-based, this seasonal cheesecake varies from week to week, we make it depending what local fruits are in season.",
+    "categories": [
+      "featured-products",
+      "prepared-foods",
+      "market-made",
+      "catering-and-special-orders"
+    ],
+    "slug": "vegan-cheesecake",
+    "variants": [
+      "Mixed Berry",
+      "Pumpkin",
+      "Chocolate",
+      "Chocolate-Peanut Butter"
+    ]
   }
 
 ]

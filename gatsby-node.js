@@ -12,10 +12,16 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
     query {
 
       allStoreNavigationJson {
-        edges {
-          node {
-            link
-            label
+        nodes {
+          name
+          slug
+          subCategories {
+            name
+            slug
+            subCategories {
+              name
+              slug
+            }
           }
         }
       }
@@ -39,18 +45,57 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
   
 
   // Create pages
-  data.allStoreNavigationJson.edges.forEach(category => {
+  data.allStoreNavigationJson.nodes.forEach(category => {
     
     actions.createPage({
       component: productCategoriesTemplate,
-      path: `/store/${category.node.link}`,
+      path: `/store/${category.slug}`,
       context: {
-        slug: category.node.link,
-        title: category.node.label,
+        slug: category.slug,
+        title: category.name,
       }
     })
 
-  })
+    // One Level Deep - Sub Categories
+    // If the subCategory array has items in it, create subdomains for those
+    if (category.subCategories.length) {
+      category.subCategories.forEach(subCategory => {
+
+        actions.createPage({
+          component: productCategoriesTemplate,
+          path: `/store/${category.slug}/${subCategory.slug}`,
+          context: {
+            slug: subCategory.slug,
+            title: subCategory.name
+          }
+        })
+        
+        // Two Levels Deep - Sub Categories
+        // If the subCategories array within the subCategory has items, then those subdomains will created, too.
+        if (subCategory.subCategories.length) {
+
+          subCategory.subCategories.forEach(twoSubCategory => {
+
+            actions.createPage({
+              component: productCategoriesTemplate,
+              path: `/store/${category.slug}/${subCategory.slug}/${twoSubCategory.slug}`,
+              context: {
+                slug: twoSubCategory.slug,
+                title: twoSubCategory.name
+              }
+            })
+
+          })
+
+        } // Two Levels Deep - Sub Categories if ends
+
+      })
+
+    } // One Level Deep - Sub Categories if ends
+
+  }) // Create pages for Product Categories ends
+
+  
 
   // Figure out how many pages there are based on how many products there are and how many products are wanted on each page.
   // const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
