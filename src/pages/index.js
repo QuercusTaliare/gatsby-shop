@@ -9,16 +9,18 @@ const IndexPage = ({isDarkMode, dispatch}) => {
     <Layout>
       <h2>Home</h2>
       <p>Home is where the heart is</p>
-      <button
+      {/* <button
         style={isDarkMode ? { background: 'black', color: 'white'} : null}
         onClick={() => dispatch(toggleDarkMode(!isDarkMode))}
       >
         Dark Mode {isDarkMode ? 'on' : 'off'}
-      </button>
+      </button> */}
     </Layout>
   )
 }
 
-export default connect(state => ({
-  isDarkMode: state.app.isDarkMode
-}), null)(IndexPage)
+// export default connect(state => ({
+//   isDarkMode: state.app.isDarkMode
+// }), null)(IndexPage)
+
+export default IndexPage;

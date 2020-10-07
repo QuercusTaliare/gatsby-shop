@@ -1,34 +1,42 @@
 [
   {
     "label": "Featured Products",
-    "link": "featured-products"
+    "link": "featured-products",
+    "subCategories": []
   },
   {
     "label": "Market Boxes",
-    "link": "market-boxes"
+    "link": "market-boxes",
+    "subCategories": []
   },
   {
     "label": "Produce",
-    "link": "produce"
+    "link": "produce",
+    "subCategories": []
   },
   {
     "label": "Deals",
-    "link": "deals"
+    "link": "deals",
+    "subCategories": []
   },
   {
     "label": "Pantry",
-    "link": "pantry"
+    "link": "pantry",
+    "subCategories": []
   },
   {
     "label": "Coffee, Tea & Chocolate",
-    "link": "coffee-tea-and-chocolate"
+    "link": "coffee-tea-and-chocolate",
+    "subCategories": []
   },
   {
     "label": "Bakery",
-    "link": "bakery"
+    "link": "bakery",
+    "subCategories": []
   },
   {
     "label": "Local Beer & Wine",
-    "link": "local-beer-and-wine"
+    "link": "local-beer-and-wine",
+    "subCategories": []
   }
 ]
