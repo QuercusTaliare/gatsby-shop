@@ -1,10 +1,12 @@
 import React from "react";
-import { connect } from 'react-redux';
+import GetRecipeData from '../utils/getRecipeData';
+// import { connect } from 'react-redux';
 
 import Layout from '../components/Layout';
 import { toggleDarkMode } from '../state/app';
 
 const IndexPage = ({isDarkMode, dispatch}) => {
+
   return (
     <Layout>
       <h2>Home</h2>

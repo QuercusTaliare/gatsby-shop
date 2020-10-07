@@ -39,6 +39,9 @@ const Header = () => {
           <li>
             <Link to="/cart">Cart</Link>
           </li>
+          <li>
+            <Link to="/recipes">Recipes</Link>
+          </li>
         </ul>
       </nav>
 

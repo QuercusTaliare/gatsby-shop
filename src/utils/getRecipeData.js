@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useContext } from 'react';
+import RecipeContext from '../components/RecipeContext';
 
 export default function GetRecipeData() {
-  const [recipes, setRecipes] = useState();
+  const [recipes, setRecipes] = useContext(RecipeContext);
 
   useEffect(function() {
 
@@ -13,6 +14,8 @@ export default function GetRecipeData() {
     }).then(res => res.json()).then(res => {
       setRecipes(res)
     })
+
+    console.log("fetched!!!")
 
   }, [])
 
