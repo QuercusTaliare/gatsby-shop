@@ -10,6 +10,15 @@ export default function SignupPage() {
       <Layout>
         <h2>Sign Up</h2>
         <form>
+
+          <fieldset>
+            <label for="address">
+              <input type="text" name="address" id="address" />
+            </label>
+
+            
+          </fieldset>
+
           <label for="username">Username</label>
           <input type="text" name="username" id="username" />
           <label for="email">Email</label>
