@@ -1,34 +1,136 @@
 [
   {
-    "label": "Featured Products",
-    "link": "featured-products"
+    "name": "Featured Products",
+    "slug": "featured-products",
+    "subCategories": []
   },
   {
-    "label": "Market Boxes",
-    "link": "market-boxes"
+    "name": "Market Boxes",
+    "slug": "market-boxes",
+    "subCategories": []
   },
   {
-    "label": "Produce",
-    "link": "produce"
+    "name": "Produce",
+    "slug": "produce",
+    "subCategories": [
+      {
+        "name": "Market Box",
+        "slug": "market-boxes",
+        "subCategories": []
+      },
+      {
+        "name": "Veggies",
+        "slug": "veggies",
+        "subCategories": []
+      },
+      {
+        "name": "Fruit",
+        "slug": "fruit",
+        "subCategories": []
+      },
+      {
+        "name": "Fresh Herbs",
+        "slug": "fresh-herbs",
+        "subCategories": []
+      },
+      {
+        "name": "Local Farm CSA Shares",
+        "slug": "local-farm-csa-shares",
+        "subCategories": []
+      }
+    ]
   },
   {
-    "label": "Deals",
-    "link": "deals"
+    "name": "Deals",
+    "slug": "deals",
+    "subCategories": []
   },
   {
-    "label": "Pantry",
-    "link": "pantry"
+    "name": "Prepared Foods",
+    "slug": "prepared-foods",
+    "subCategories": [
+      {
+        "name": "Market Made",
+        "slug": "market-made",
+        "subCategories": [
+          {
+            "name": "Salads, Smoothies & Juices",
+            "slug": "salads-smoothies-and-juices",
+            "subCategories": []
+          },
+          {
+            "name": "Baking and Sweets",
+            "slug": "baking-and-sweets",
+            "subCategories": []
+          },
+          {
+            "name": "Catering/Special Orders",
+            "slug": "catering-and-special-orders",
+            "subCategories": []
+          }
+        ]
+      },
+      {
+        "name": "Berkeley North",
+        "slug": "berkeley-north",
+        "subCategories": []
+      }
+    ]
   },
   {
-    "label": "Coffee, Tea & Chocolate",
-    "link": "coffee-tea-and-chocolate"
+    "name": "Coffee, Tea & Chocolate",
+    "slug": "coffee-tea-and-chocolate",
+    "subCategories": []
   },
   {
-    "label": "Bakery",
-    "link": "bakery"
+    "name": "Bakery",
+    "slug": "bakery",
+    "subCategories": []
   },
   {
-    "label": "Local Beer & Wine",
-    "link": "local-beer-and-wine"
+    "name": "Local Beer & Wine",
+    "slug": "local-beer-and-wine",
+    "subCategories": [
+      {
+        "name": "Grain & Grit",
+        "slug": "grain-and-grit",
+        "subCategories": []
+      },
+      {
+        "name": "Fairweather",
+        "slug": "fairweather",
+        "subCategories": []
+      },
+      {
+        "name": "Collective Arts",
+        "slug": "collective-arts",
+        "subCategories": []
+      },
+      {
+        "name": "New Limburg Brewing",
+        "slug": "new-limburg-brewing",
+        "subCategories": []
+      },
+      {
+        "name": "Rosewood",
+        "slug": "rosewood",
+        "subCategories": []
+      },
+      {
+        "name": "Gruvi Non-Alcoholic",
+        "slug": "gruvi-non-alcoholic",
+        "subCategories": []
+      },
+      {
+        "name": "Bench Brewing",
+        "slug": "bench-brewing",
+        "subCategories": []
+      },
+      {
+        "name": "Spearhead Brewing Company",
+        "slug": "spearhead-brewing-company",
+        "subCategories": []
+      }
+    ]
   }
 ]

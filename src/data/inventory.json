@@ -9,7 +9,8 @@
       "featured-products",
       "bakery"
     ],
-    "slug": "country-sourdough-loaf"
+    "slug": "country-sourdough-loaf",
+    "variants": []
   },
   {
     "name": "Spearhead Oktoberfest (beer)",
@@ -21,8 +22,62 @@
       "featured-products",
       "local-beer-and-wine"
     ],
-    "slug": "spearhead-oktoberfest-beer"
+    "slug": "spearhead-oktoberfest-beer",
+    "variants": []
 
+  },
+  {
+    "name": "Dubbed (beer)",
+    "img": "",
+    "supplier": "New Limburg Brewery",
+    "price": 595,
+    "desc": "Our Dubbel has a deep brown-red colour. At once, this beer greets you with a sweet caramel aroma. The sweet berry, dark fruit, and slightly nutty flavours are well balanced with a subdued malt background. While pilsner malt provides the Dubbel’s base, its colour comes mostly from the addition of Belgian “candi” syrup, a traditional ingredient added for flavour complexity and alcohol content. The interaction between the candi syrup and the complex flavours produced by our house yeast strain give our Dubbel its signature taste and place it well within the Trappist tradition.",
+    "categories": [
+      "featured-products",
+      "local-beer-and-wine"
+    ],
+    "slug": "dubbed-beer",
+    "variants": ["Single", "Six Pack"] 
+  },
+  {
+    "name": "Pearl Street Chocolates",
+    "img": "",
+    "supplier": "Pearl Street Chocolates",
+    "price": 499,
+    "desc": "Family Run, bean 2 bar chocolates made just down the street.  What's not to like?  27g.",
+    "categories": [
+      "featured-products",
+      "coffee-tea-and-chocolate"
+    ],
+    "slug": "pearl-street-chocolates",
+    "variants": [
+      "71% Peru Dark Chocolate",
+      "85% Honduras Dark Chocolate",
+      "85% Papua New Guinea Dark Chocolate",
+      "Coconut-Mylk Chocolate",
+      "Oat-Mylk Chocolate",
+      "Oat-Mylk Cappunccino Chocolate"
+    ]
+  },
+  {
+    "name": "Vegan Cheesecake (Whole)",
+    "img": "",
+    "supplier": "Dundurn Market",
+    "price": 4500,
+    "desc": " Our vegan cheesecake is deep and delicious and usually sells out before we can make another! Cashew-based, this seasonal cheesecake varies from week to week, we make it depending what local fruits are in season.",
+    "categories": [
+      "featured-products",
+      "prepared-foods",
+      "market-made",
+      "catering-and-special-orders"
+    ],
+    "slug": "vegan-cheesecake",
+    "variants": [
+      "Mixed Berry",
+      "Pumpkin",
+      "Chocolate",
+      "Chocolate-Peanut Butter"
+    ]
   }
 
 ]

@@ -2,14 +2,26 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
+// A navigation bar for the Store
 import StoreLayout from '../components/StoreLayout';
+// A utility function that allows you to manage state in Context for your order
+import manageOrder from '../utils/manageOrder';
+// import Pagination from '../components/Pagination';
 
 const ProductCategories = (props) => {
+
+  const { order, addToOrder, removeFromOrder } = manageOrder();
 
   return (
     <Layout>
 
       <StoreLayout>
+
+        {/* <Pagination 
+          pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
+          totalCount={props.data.allInventoryJson.totalCount}
+          currentPage={pageContext.currentPage || 1}
+        /> */}
 
         <h2>{props.pageContext.title}</h2>
 
@@ -29,7 +41,12 @@ const ProductCategories = (props) => {
                 <p>{`$ ${price / 100}`}</p>
                 <p>{supplier}</p>
                 <p>{desc}</p>
-                <button type="button">Add To Cart</button>
+                <button 
+                  type="button" 
+                  onClick={() => addToOrder({ id: id, name: name })}
+                >
+                  Add To Cart
+                </button>
               </li>
             )
           })}
