@@ -14,12 +14,28 @@ const onSubmit = values => {
   console.log('Form Data', values)
 }
 
+const validate = values => {
+  // let errors = {}
+
+  // if (!values.username) {
+  //   errors.username = 'Required'
+  // }
+
+  // if (!values.password) {
+  //   errors.password = 'Required'
+  // } else if (!/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/i.test(values.password)) {
+  //   errors.password = 'Must have an uppercase, lowercase, number, and symbol'
+  // }
+
+  // return errors
+}
+
 const validationSchema = Yup.object({
   username: Yup.string().required('Required'),
-  password: Yup.string().matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/i, 'Invalid Format')
+  password: Yup.string().required('Required')
 })
 
-export default function LoginPage() {
+export default function OldLoginPage() {
 
   const formik = useFormik({
     // This is initializing the form state
@@ -30,6 +46,8 @@ export default function LoginPage() {
     // validate: validate
   })
 
+  console.log('Visited Fields', formik.touched);
+
   return (
     <>
       <Layout>
@@ -37,23 +55,27 @@ export default function LoginPage() {
 
         <form onSubmit={formik.handleSubmit}>
           <label htmlFor="username">Username</label>
-          <input 
-            type="text" 
-            name="username" 
-            id="username" 
-            {...formik.getFieldProps('username')}
+          <input
+            type="text"
+            name="username"
+            id="username"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.username}
           />
           {formik.touched.username && formik.errors.username && <div>{formik.errors.username}</div>}
-          
+
           <label htmlFor="password">Password</label>
-          <input 
-            type="password" 
-            name="password" 
-            id="password" 
-            {...formik.getFieldProps('password') }
+          <input
+            type="password"
+            name="password"
+            id="password"
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.password}
           />
           {formik.touched.password && formik.errors.password && <div>{formik.errors.password}</div>}
-          
+
           <button type="submit">Sign In</button>
         </form>
 
