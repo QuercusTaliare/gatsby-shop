@@ -39,10 +39,14 @@ export default function SignupPage() {
     lastName: Yup.string().required('Required'),
     email: Yup.string().required('Required').email('Invalid Email Format'),
     phone: Yup.string().required('Required').matches(/^[2-9]\d{2}-\d{3}-\d{4}$/, 'Invalid phone format'),
+    // NEED USERNAME REGEX
     userName: Yup.string().required('Required'),
+    // PASSWORD REGEX FORMAT NEEDED?
     password: Yup.string().required('Required').matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/i, 'Invalid Format'),
-    creditCardNumber: Yup.string(),
+    // NEED REGEX FOR CREDIT CARD
+    creditCardNumber: Yup.string().required('Required'),
     expDate: Yup.string(),
+    // NEED REGEX FOR SECURITY CODE
     securityCode: Yup.string()
   })
 
