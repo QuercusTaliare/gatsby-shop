@@ -71,7 +71,7 @@ export default function SignupPage() {
 
               <legend>Address and Delivery</legend>
 
-              <label for="receivingOrder">
+              <label htmlFor="receivingOrder">
                 <span>Delivery or Pickup?</span>
                 <Field as="select" name="receivingOrder" id="receivingOrder">
                   <option value="">Select</option>
@@ -81,25 +81,25 @@ export default function SignupPage() {
                 <ErrorMessage name="receivingOrder" />
               </label>
 
-              <label for="address">
+              <label htmlFor="address">
                 <span>Address</span>
                 <Field type="text" name="address" id="address" />
                 <ErrorMessage name="address" />
               </label>
 
-              <label for="addressTwo">
+              <label htmlFor="addressTwo">
                 <span>Address (Line 2)</span>
                 <Field type="text" name="addressTwo" id="addressTwo" />
 
               </label>
 
-              <label for="city">
+              <label htmlFor="city">
                 <span>City</span>
                 <Field type="text" name="city" id="city" />
                 <ErrorMessage name="city" />
               </label>
 
-              <label for="postalCode">
+              <label htmlFor="postalCode">
                 <span>Postal Code</span>
                 <Field type="text" name="postalCode" id="postalCode" />
                 <ErrorMessage name="postalCode" />
@@ -111,37 +111,37 @@ export default function SignupPage() {
             <fieldset>
               <legend>Personal Information</legend>
 
-              <label for="firstName">
+              <label htmlFor="firstName">
                 <span>First Name</span>
                 <Field type="text" name="firstName" id="firstName" />
                 <ErrorMessage name="firstName" />
               </label>
 
-              <label for="lastName">
+              <label htmlFor="lastName">
                 <span>Last Name</span>
                 <Field type="text" name="lastName" id="lastName" />
                 <ErrorMessage name="lastName" />
               </label>
 
-              <label for="email">
+              <label htmlFor="email">
                 <span>Email</span>
                 <Field type="email" name="email" id="email" />
                 <ErrorMessage name="email" />
               </label>
 
-              <label for="phone">
+              <label htmlFor="phone">
                 <span>Phone (xxx-xxx-xxxx)</span>
                 <Field type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
                 <ErrorMessage name="phone" />
               </label>
 
-              <label for="userName">
+              <label htmlFor="userName">
                 <span>Username</span>
                 <Field type="text" name="userName" id="userName" />
                 <ErrorMessage name="userName" />
               </label>
 
-              <label for="password">
+              <label htmlFor="password">
                 <span>Password</span>
                 <Field type="password" name="password" id="password" />
                 <ErrorMessage name="password" />
@@ -153,19 +153,19 @@ export default function SignupPage() {
             <fieldset>
               <legend>Credit Card</legend>
 
-              <label for="creditCardNumber">
+              <label htmlFor="creditCardNumber">
                 <span>Credit Card Number</span>
                 <Field type="text" name="creditCardNumber" id="creditCardNumber" />
                 <ErrorMessage name="creditCardNumber" />
               </label>
 
-              <label for="expDate">
+              <label htmlFor="expDate">
                 <span>Expiration Date</span>
                 <Field type="date" name="expDate" id="expDate" />
                 <ErrorMessage name="expDate" />
               </label>
 
-              <label for="securityCode">
+              <label htmlFor="securityCode">
                 <span>Security Code</span>
                 <Field type="text" name="securityCode" id="securityCode" />
                 <ErrorMessage name="securityCode" />
