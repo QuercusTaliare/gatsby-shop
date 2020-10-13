@@ -43,55 +43,91 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
   `)
   
   
+  function dynamicSubCategories(category, slug, rootPath, name, subCategories) {
+    
+    rootPath = `${rootPath}/${slug}`;
+
+    actions.createPage({
+        component: productCategoriesTemplate,
+        path: rootPath,
+        context: {
+          slug: slug,
+          title: name
+        }
+    })
+    
+    // console.log(subCategories.length);
+
+    if(subCategories.length) {
+
+      console.log(subCategories.length);
+
+      // GETTING ERROR THAT SUBCATEGORIES IS UNDEFINED
+
+      // subCategories.forEach(category => {
+
+      //   dynamicSubCategories(category, category.slug, rootPath, category.name, category.subCategories)
+
+      // })
+
+    }
+
+  }
+
 
   // Create pages
   data.allStoreNavigationJson.nodes.forEach(category => {
+
+    let rootPath = `/store`;
     
-    actions.createPage({
-      component: productCategoriesTemplate,
-      path: `/store/${category.slug}`,
-      context: {
-        slug: category.slug,
-        title: category.name,
-      }
-    })
+    // actions.createPage({
+    //   component: productCategoriesTemplate,
+    //   path: `/store/${category.slug}`,
+    //   context: {
+    //     slug: category.slug,
+    //     title: category.name,
+    //   }
+    // })
 
-    // One Level Deep - Sub Categories
-    // If the subCategory array has items in it, create subdomains for those
-    if (category.subCategories.length) {
-      category.subCategories.forEach(subCategory => {
+    dynamicSubCategories(category, category.slug, rootPath, category.name, category.subCategories); 
+    
 
-        actions.createPage({
-          component: productCategoriesTemplate,
-          path: `/store/${category.slug}/${subCategory.slug}`,
-          context: {
-            slug: subCategory.slug,
-            title: subCategory.name
-          }
-        })
+  //   // One Level Deep - Sub Categories
+  //   // If the subCategory array has items in it, create subdomains for those
+  //   if (category.subCategories.length) {
+  //     category.subCategories.forEach(subCategory => {
+
+  //       actions.createPage({
+  //         component: productCategoriesTemplate,
+  //         path: `/store/${category.slug}/${subCategory.slug}`,
+  //         context: {
+  //           slug: subCategory.slug,
+  //           title: subCategory.name
+  //         }
+  //       })
         
-        // Two Levels Deep - Sub Categories
-        // If the subCategories array within the subCategory has items, then those subdomains will created, too.
-        if (subCategory.subCategories.length) {
+  //       // Two Levels Deep - Sub Categories
+  //       // If the subCategories array within the subCategory has items, then those subdomains will created, too.
+  //       if (subCategory.subCategories.length) {
 
-          subCategory.subCategories.forEach(twoSubCategory => {
+  //         subCategory.subCategories.forEach(twoSubCategory => {
 
-            actions.createPage({
-              component: productCategoriesTemplate,
-              path: `/store/${category.slug}/${subCategory.slug}/${twoSubCategory.slug}`,
-              context: {
-                slug: twoSubCategory.slug,
-                title: twoSubCategory.name
-              }
-            })
+  //           actions.createPage({
+  //             component: productCategoriesTemplate,
+  //             path: `/store/${category.slug}/${subCategory.slug}/${twoSubCategory.slug}`,
+  //             context: {
+  //               slug: twoSubCategory.slug,
+  //               title: twoSubCategory.name
+  //             }
+  //           })
 
-          })
+  //         })
 
-        } // Two Levels Deep - Sub Categories if ends
+  //       } // Two Levels Deep - Sub Categories if ends
 
-      })
+  //     })
 
-    } // One Level Deep - Sub Categories if ends
+  //   } // One Level Deep - Sub Categories if ends
 
   }) // Create pages for Product Categories ends
 
