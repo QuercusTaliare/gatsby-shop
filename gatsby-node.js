@@ -26,6 +26,14 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
         }
       }
 
+      allStoreNavigationFlatJson {
+        nodes {
+          name
+          slug
+          rootUrl
+        }
+      }
+
       products: allInventoryJson {
         totalCount
         nodes {
@@ -79,9 +87,27 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
 
   }
 
+  data.allStoreNavigationFlatJson.nodes.forEach(category => {
+
+
+    actions.createPage({
+      component: productCategoriesTemplate,
+      path: `/store${category.rootUrl ? `/${category.rootUrl}` : ``}/${category.slug}`,
+      context: {
+        slug: category.slug,
+        title: category.name
+      }
+    })
+
+
+  })
+
 
   // Create pages
-  data.allStoreNavigationJson.nodes.forEach(category => {
+  // data.allStoreNavigationJson.nodes.forEach(category => {
+
+
+
 
     // let rootPath = `/store`;
     
@@ -94,8 +120,9 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
     //   }
     // })
 
-    dynamicSubCategories(category.slug, '/store', category.name, category.subCategories); 
+    // dynamicSubCategories(category.slug, '/store', category.name, category.subCategories); 
     
+    //*********************************************************************** */
 
   //   // One Level Deep - Sub Categories
   //   // If the subCategory array has items in it, create subdomains for those
@@ -134,7 +161,7 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
 
   //   } // One Level Deep - Sub Categories if ends
 
-  }) // Create pages for Product Categories ends
+  // }) // Create pages for Product Categories ends
 
 } // Turn Categories Into Pages function ENDS
 
