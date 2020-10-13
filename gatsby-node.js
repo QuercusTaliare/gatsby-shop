@@ -95,28 +95,9 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
 
   }) // Create pages for Product Categories ends
 
-  
-
-  // Figure out how many pages there are based on how many products there are and how many products are wanted on each page.
-  // const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
-  // const pageCount = (Math.ceil(data.products.totalCount / pageSize));
-  // console.log(`There are ${data.products.totalCount} total products. And we have ${pageCount} pages with ${pageSize} per page.`)
-
-  // Loop from 1 to n and create pages for each of them
-    // Array.from({ length: pageCount }).forEach((_, i) => {
-    //   console.log(`Creating page ${i}`);
-    //   actions.createPage({
-    //     path: `/store/${category.node.link}/${i + 1}`,
-    //     component: path.resolve('./src/templates/ProductCategories.js'),
-    //     context: {
-    //       skip: i * pageSize,
-    //       currentPage: i + 1,
-    //       pageSize,
-    //     }
-    //   })
-    // })
-
 } // Turn Categories Into Pages function ENDS
+
+
 
 // TURN PRODUCTS INTO PAGES function
 const turnProductsIntoPages = async ({ graphql, actions }) => {
@@ -157,79 +138,7 @@ const turnProductsIntoPages = async ({ graphql, actions }) => {
 
 } // Turn Products Into Pages function ENDS
 
-// *************************************************************
-
-// module.exports.createPages = async ({ graphql, actions }) => {
-//   const { createPage } = actions;
-//   const productCategoriesTemplate = path.resolve('./src/templates/ProductCategories.js');
-//   const productTemplate = path.resolve('./src/templates/Product.js');
-
-//   // Creates a promise of the graphql call
-//   const res = await graphql(`
-  
-//     query {
-
-//       allStoreNavigationJson {
-//         edges {
-//           node {
-//             link
-//             label
-//           }
-//         }
-//       }
-
-//       allInventoryJson {
-//       nodes {
-//         name
-//         desc
-//         img
-//         price
-//         supplier
-//         slug
-//       }
-//     }
-
-//     }
-  
-//   `)
-  
-//   // Create a list of all the product categories returned from the promise
-//   const productCategories = res.data.allStoreNavigationJson.edges;
-
-//   productCategories.forEach((category) => {
-
-//     createPage({
-//       component: productCategoriesTemplate,
-//       path: `/store/${category.node.link}`,
-//       context: {
-//         slug: category.node.link,
-//         title: category.node.label,
-//       }
-//     })
-
-//   })
-
-//   // Create a list of all the products returned from the promise
-//   const products = res.data.allInventoryJson.edges;
-
-//   // Creates a page for each product
-//   products.forEach((product) => {
-
-//     createPage({
-//       component: productTemplate,
-//       path: `/product/${product.node.slug}`,
-//       context: {
-//         slug: product.node.slug,
-//         title: product.node.name
-//       }
-//     })
-
-//   })
-
-//   // return Promise.all([])
-
-// }
-
+// CREATE ALL PAGES
 module.exports.createPages = async (params) => {
 
   await Promise.all([
