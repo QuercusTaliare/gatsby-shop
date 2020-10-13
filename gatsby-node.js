@@ -43,7 +43,7 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
   `)
   
   
-  function dynamicSubCategories(category, slug, rootPath, name, subCategories) {
+  function dynamicSubCategories(slug, rootPath, name, subCategories) {
     
     rootPath = `${rootPath}/${slug}`;
 
@@ -56,19 +56,24 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
         }
     })
     
-    // console.log(subCategories.length);
+    // console.log(JSON.stringify(subCategories));
 
     if(subCategories.length) {
 
-      console.log(subCategories.length);
+      console.log(JSON.stringify(subCategories));
 
-      // GETTING ERROR THAT SUBCATEGORIES IS UNDEFINED
+      // GETTING ERROR THAT SUBCATEGORIES IS UNDEFINED AT THE LOWEST LEVEL
 
-      // subCategories.forEach(category => {
+      subCategories.forEach(subCategory => {
 
-      //   dynamicSubCategories(category, category.slug, rootPath, category.name, category.subCategories)
+        dynamicSubCategories(subCategory.slug, rootPath, subCategory.name, subCategory.subCategories)
+       
+        // console.log(`Slug: ${category.slug}`);
+        // console.log(`Root: ${rootPath}`);
+        // console.log(`Name: ${category.name}`);
+        // console.log(`Categories: ${JSON.stringify(category.subCategories)}`);
 
-      // })
+      })
 
     }
 
@@ -78,7 +83,7 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
   // Create pages
   data.allStoreNavigationJson.nodes.forEach(category => {
 
-    let rootPath = `/store`;
+    // let rootPath = `/store`;
     
     // actions.createPage({
     //   component: productCategoriesTemplate,
@@ -89,7 +94,7 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
     //   }
     // })
 
-    dynamicSubCategories(category, category.slug, rootPath, category.name, category.subCategories); 
+    dynamicSubCategories(category.slug, '/store', category.name, category.subCategories); 
     
 
   //   // One Level Deep - Sub Categories
