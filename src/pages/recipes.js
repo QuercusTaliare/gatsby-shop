@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as JsSearch from 'js-search';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import Layout from '../components/Layout';
 import GetRecipeData from '../utils/getRecipeData';
+import Search from '../components/Search';
 
 export default function RecipesPage() {
 
   // *************************************************************
   // Access recipe state held in Context
   const { recipes } = GetRecipeData();
+
+  // *************************************************************
+  const [query, setQuery] = useState([]);
+
 
   // *************************************************************
   // Establish recipe search index
@@ -35,9 +40,9 @@ export default function RecipesPage() {
 
   // ************************************************************
   // SEARCH FUNCTION
-  function searchData(e) {
-    const queryResult = recipeSearch.search(e.target.value);
-
+  function searchData(searchValue) {
+    const queryResult = recipeSearch.search(searchValue);
+    setQuery(queryResult);
   }
 
   // ************************************************************
@@ -51,27 +56,40 @@ export default function RecipesPage() {
 
         <h2>Recipes</h2>
 
-        <Formik
+        <Search 
+          searchData={searchData}
+          // useQuery={useQuery}
+        />
 
-        
-        >
-
-
-
-        </Formik>
-
-        
-        {recipes.map(recipe => (
-          <div key={recipe.title}>
-            <h3>{recipe.title}</h3>
-            <p>{recipe.directions}</p>
-            <img 
-              src={recipe.photoUrl} 
-              alt={recipe.title}
-              height="400"
+        {!query.length 
+          ? 
+          recipes.map(recipe => (
+            <div key={recipe.title}>
+              <h3>{recipe.title}</h3>
+              <p>{recipe.directions}</p>
+              <img 
+                src={recipe.photoUrl} 
+                alt={recipe.title}
+                height="400"
+                />
+            </div>
+          ))
+          :
+          query.map(result => (
+            <div key={result.id}>
+              <h3>{result.title}</h3>
+              <p>{result.directions}</p>
+              <img 
+                src={result.photoUrl} 
+                alt={result.title} 
+                height="400" 
               />
-          </div>
-        ))}
+            </div>
+          ))
+        }
+
+
+        {}
 
       </Layout>
     </>
