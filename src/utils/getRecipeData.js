@@ -6,16 +6,22 @@ export default function GetRecipeData() {
 
   useEffect(function() {
 
-    fetch('https://sampleapis.com/recipes/api/recipes', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(res => res.json()).then(res => {
-      setRecipes(res)
-    })
+    const fetchRecipes = async () => {
 
-    console.log("fetched!!!")
+      await fetch('https://sampleapis.com/recipes/api/recipes', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json()).then(res => {
+        setRecipes(res)
+      })
+
+      console.log("fetched!!!")
+
+    }
+
+    fetchRecipes();
 
   }, [])
 
