@@ -16,22 +16,28 @@ export default function Search({ searchData }) {
     search: Yup.string().required('Required')
   })
 
-
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
-      <Form>
-        <label htmlFor="search">Search</label>
-        <Field 
-          type="text" 
-          name="search" 
-          id="search"
-        />
-        <button type="submit">Search</button>
-      </Form>
+      {({ values }) => (
+
+        <Form>
+          <label htmlFor="search">Search</label>
+          <Field 
+            type="text" 
+            name="search" 
+            id="search"
+          />
+          <button type="submit">Search</button>
+          {/* SHOWS THE CURRENT VALUES - DEVELOPMENT ONLY */}
+          <pre>{JSON.stringify(values, null, 2)}</pre>
+        </Form>
+        
+      )}
+      
     </Formik>
   )
 }
