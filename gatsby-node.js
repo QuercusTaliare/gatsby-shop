@@ -63,24 +63,20 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
           title: name
         }
     })
-    
-    // console.log(JSON.stringify(subCategories));
+
+    console.log(`${name} page created`)
+
+    console.log(`${name} has this many subCategories: ${subCategories.length}`)
 
     if(subCategories.length) {
-
-      console.log(JSON.stringify(subCategories));
-
-      // GETTING ERROR THAT SUBCATEGORIES IS UNDEFINED AT THE LOWEST LEVEL
+      
+    //   // GETTING ERROR THAT SUBCATEGORIES IS UNDEFINED AT THE LOWEST LEVEL
 
       subCategories.forEach(subCategory => {
 
         dynamicSubCategories(subCategory.slug, rootPath, subCategory.name, subCategory.subCategories)
-       
-        // console.log(`Slug: ${category.slug}`);
-        // console.log(`Root: ${rootPath}`);
-        // console.log(`Name: ${category.name}`);
-        // console.log(`Categories: ${JSON.stringify(category.subCategories)}`);
 
+        // console.log(JSON.stringify(subCategory));
       })
 
     }
@@ -106,20 +102,9 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
   // Create pages
   data.allStoreNavigationJson.nodes.forEach(category => {
 
-    let rootPath = `/store`;
-    
-    actions.createPage({
-      component: productCategoriesTemplate,
-      path: `/store/${category.slug}`,
-      context: {
-        slug: category.slug,
-        title: category.name,
-      }
-    })
-
     dynamicSubCategories(category.slug, '/store', category.name, category.subCategories); 
   
-  }
+  })
     
     //*********************************************************************** */
 
@@ -164,9 +149,8 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
 
   // }) // Create pages for Product Categories ends
 
-  // } // Turn Categories Into Pages function ENDS
+} // Turn Categories Into Pages function ENDS
 
-}
 
 
 // TURN PRODUCTS INTO PAGES function
