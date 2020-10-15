@@ -87,43 +87,44 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
 
   }
 
-  data.allStoreNavigationFlatJson.nodes.forEach(category => {
+  // data.allStoreNavigationFlatJson.nodes.forEach(category => {
 
 
-    actions.createPage({
-      component: productCategoriesTemplate,
-      path: `/store${category.rootUrl ? `/${category.rootUrl}` : ``}/${category.slug}`,
-      context: {
-        slug: category.slug,
-        title: category.name
-      }
-    })
+  //   actions.createPage({
+  //     component: productCategoriesTemplate,
+  //     path: `/store${category.rootUrl ? `/${category.rootUrl}` : ``}/${category.slug}`,
+  //     context: {
+  //       slug: category.slug,
+  //       title: category.name
+  //     }
+  //   })
 
 
-  })
+  // })
 
 
   // Create pages
-  // data.allStoreNavigationJson.nodes.forEach(category => {
+  data.allStoreNavigationJson.nodes.forEach(category => {
 
-
-
-
-    // let rootPath = `/store`;
+    let rootPath = `/store`;
     
-    // actions.createPage({
-    //   component: productCategoriesTemplate,
-    //   path: `/store/${category.slug}`,
-    //   context: {
-    //     slug: category.slug,
-    //     title: category.name,
-    //   }
-    // })
+    actions.createPage({
+      component: productCategoriesTemplate,
+      path: `/store/${category.slug}`,
+      context: {
+        slug: category.slug,
+        title: category.name,
+      }
+    })
 
-    // dynamicSubCategories(category.slug, '/store', category.name, category.subCategories); 
+    dynamicSubCategories(category.slug, '/store', category.name, category.subCategories); 
+  
+  }
     
     //*********************************************************************** */
 
+
+  // data.allStoreNavigationJson.nodes.forEach(category => {
   //   // One Level Deep - Sub Categories
   //   // If the subCategory array has items in it, create subdomains for those
   //   if (category.subCategories.length) {
@@ -163,8 +164,9 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
 
   // }) // Create pages for Product Categories ends
 
-} // Turn Categories Into Pages function ENDS
+  // } // Turn Categories Into Pages function ENDS
 
+}
 
 
 // TURN PRODUCTS INTO PAGES function
