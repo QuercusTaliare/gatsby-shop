@@ -64,19 +64,12 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
         }
     })
 
-    console.log(`${name} page created`)
-
-    console.log(`${name} has this many subCategories: ${subCategories.length}`)
-
-    if(subCategories.length) {
+    if(subCategories) {
       
-    //   // GETTING ERROR THAT SUBCATEGORIES IS UNDEFINED AT THE LOWEST LEVEL
-
       subCategories.forEach(subCategory => {
 
         dynamicSubCategories(subCategory.slug, rootPath, subCategory.name, subCategory.subCategories)
 
-        // console.log(JSON.stringify(subCategory));
       })
 
     }
@@ -191,6 +184,16 @@ const turnProductsIntoPages = async ({ graphql, actions }) => {
   })
 
 } // Turn Products Into Pages function ENDS
+
+
+// module.exports.createSchemaCustomization = ({ actions }) => {
+//   actions.createTypes([
+//     `type allStoreNavigation implements Node @infer {
+//       subCategories: [Node]
+//     }`
+//   ])
+// }
+
 
 // CREATE ALL PAGES
 module.exports.createPages = async (params) => {
