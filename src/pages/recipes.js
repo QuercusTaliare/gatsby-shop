@@ -24,6 +24,20 @@ export default function RecipesPage() {
 
   }
 
+  function searchDataArray(searchValueArray) {
+
+    const allResults = searchValueArray.map(searchValue => {
+      const result = recipeSearch.search(searchValue);
+
+      return result;
+    })
+
+    console.log(allResults);
+
+  }
+
+  // searchData("rice");
+
   return (
     <>
       <Layout>
@@ -32,6 +46,7 @@ export default function RecipesPage() {
 
         <Search 
           searchData={searchData}
+          searchDataArray={searchDataArray}
         />
 
         {!queryResult.length 
