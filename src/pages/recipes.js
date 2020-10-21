@@ -1,54 +1,28 @@
 import React, { useState } from 'react';
-import * as JsSearch from 'js-search';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 import Layout from '../components/Layout';
-import GetRecipeData from '../utils/getRecipeData';
 import Search from '../components/Search';
+import GetRecipeData from '../utils/getRecipeData';
+import createSearchIndex from '../utils/createSearchIndex';
 
 export default function RecipesPage() {
 
-  // *************************************************************
   // Access recipe state held in Context
   const { recipes } = GetRecipeData();
 
-  // *************************************************************
-  const [query, setQuery] = useState([]);
+  const [queryResult, setQueryResult] = useState([]);
 
+  // Create search index with utility function createSearchIndex
+  const recipeSearch = createSearchIndex('id', ['title'], recipes);
 
-  // *************************************************************
-  // Establish recipe search index
-  const recipeSearch = new JsSearch.Search('id');
-
-  // Creates an index strategy. There are other indexing strategies available: https://github.com/bvaughn/js-search#configuring-the-index-strategy
-  recipeSearch.indexStrategy = new JsSearch.PrefixIndexStrategy();
-
-  // Makes it okay for words to be lowercase
-  recipeSearch.sanitizer = new JsSearch.LowerCaseSanitizer();
-
-  // Term frequency-inverse document frequency search index
-  // Determines how important words are in a document.
-  recipeSearch.searchIndex = new JsSearch.TfIdfSearchIndex('id');
-
-  recipeSearch.addIndex('title');
-  // recipeSearch.addIndex('tags');
-
-  recipeSearch.addDocuments(recipes);
-
-  console.log(recipeSearch);
-  console.log(recipeSearch.search("California"));
-
-  // ************************************************************
   // SEARCH FUNCTION
   function searchData(searchValue) {
-    const queryResult = recipeSearch.search(searchValue);
-    setQuery(queryResult);
+
+    const result = recipeSearch.search(searchValue);
+
+    setQueryResult(result);
+
   }
-
-  // ************************************************************
-  // Form Initialization
-
-
 
   return (
     <>
@@ -58,10 +32,9 @@ export default function RecipesPage() {
 
         <Search 
           searchData={searchData}
-          // useQuery={useQuery}
         />
 
-        {!query.length 
+        {!queryResult.length 
           ? 
           recipes.map(recipe => (
             <div key={recipe.title}>
@@ -75,7 +48,7 @@ export default function RecipesPage() {
             </div>
           ))
           :
-          query.map(result => (
+          queryResult.map(result => (
             <div key={result.id}>
               <h3>{result.title}</h3>
               <p>{result.directions}</p>
@@ -87,9 +60,6 @@ export default function RecipesPage() {
             </div>
           ))
         }
-
-
-        {}
 
       </Layout>
     </>
