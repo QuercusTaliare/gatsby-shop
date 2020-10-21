@@ -15,7 +15,7 @@ export default function Search({ searchDataArray }) {
 
   const validationSchema = Yup.object({
     search: Yup.string(),
-    searchArray: Yup.string()
+    searchArray: Yup.array().of(Yup.string().required('Required'))
   })
 
   return (
@@ -26,17 +26,35 @@ export default function Search({ searchDataArray }) {
       validationSchema={validationSchema}
     >
 
-      {({ values }) => (
+      {({ values, isValid, isSubmitting }) => (
 
         <Form>
           
           <div>
             <label htmlFor="search">Search</label>
-            <Field 
-              type="text" 
-              name="search" 
+
+            {/* <Field 
+              type="text"
+              name="search"
               id="search"
-            />
+            /> */}
+
+            {/* Refactored version with rendered props of a typical Field component */}
+            <Field  
+              name="search" 
+            >
+              {props => {
+                
+                const { field } = props;
+                return (
+                  <div>
+                    <input type="text" id="address" {...field} />
+                  </div>
+                )
+                
+              }}
+
+            </Field>
           </div>
 
           <div>
@@ -69,9 +87,10 @@ export default function Search({ searchDataArray }) {
             </FieldArray>
           </div>
 
-          <button type="submit">Search</button>
+          <button type="submit" disabled={!(isValid || isSubmitting)}>Search</button>
           {/* SHOWS THE CURRENT VALUES - DEVELOPMENT ONLY */}
           <pre>{JSON.stringify(values, null, 2)}</pre>
+
         </Form>
         
       )}
