@@ -15,7 +15,9 @@ export default function RecipesPage() {
   // Create search index with utility function createSearchIndex
   const recipeSearch = createSearchIndex('id', ['title'], recipes);
 
-  // SEARCH FUNCTION
+  // SEARCH DATA FUNCTION
+  // searchValue: string
+  // NO LONGER PASSED DOWN: this can probably be deleted
   function searchData(searchValue) {
 
     const result = recipeSearch.search(searchValue);
@@ -24,19 +26,30 @@ export default function RecipesPage() {
 
   }
 
+  // SEARCH DATA ARRAY FUNCTION 
+  // searchValueArray: array of strings
+  // Creates a 2-dimensional array of all the results for each search tag
+  // Sorts through all the results, and finds only the common results
+  // Sets the queryResult state, which triggers a render
   function searchDataArray(searchValueArray) {
 
     const allResults = searchValueArray.map(searchValue => {
+
       const result = recipeSearch.search(searchValue);
 
       return result;
+
     })
 
-    console.log(allResults);
+    const commonItems = allResults.reduce((commonItems, currentItem) => {
+      
+      return commonItems.filter(recipe => currentItem.includes(recipe));
 
+    })
+
+    setQueryResult(commonItems);
+    
   }
-
-  // searchData("rice");
 
   return (
     <>
@@ -45,7 +58,6 @@ export default function RecipesPage() {
         <h2>Recipes</h2>
 
         <Search 
-          searchData={searchData}
           searchDataArray={searchDataArray}
         />
 

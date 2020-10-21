@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
 import * as Yup from 'yup';
 
-export default function Search({ searchData, searchDataArray }) {
+export default function Search({ searchDataArray }) {
 
   const initialValues = {
     search: '',
@@ -10,20 +10,22 @@ export default function Search({ searchData, searchDataArray }) {
   }
 
   const onSubmit = (values) => {
-    searchData(values.search);
     searchDataArray(values.searchArray);
   }
 
   const validationSchema = Yup.object({
-    search: Yup.string().required('Required')
+    search: Yup.string(),
+    searchArray: Yup.string()
   })
 
   return (
+
     <Formik
       initialValues={initialValues}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
     >
+
       {({ values }) => (
 
         <Form>
@@ -41,8 +43,9 @@ export default function Search({ searchData, searchDataArray }) {
             <label htmlFor="searchArray">Search Array</label>
             <FieldArray type="text" name="searchArray" id="searchArray">
               {fieldArrayprops => {
+
                 const { push, remove, form } = fieldArrayprops;
-                // console.log(form.values.searchArray);
+
                 return (
                   <div>
                     {
@@ -61,6 +64,7 @@ export default function Search({ searchData, searchDataArray }) {
                     }
                   </div>
                 )
+
               }}
             </FieldArray>
           </div>
