@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
 import * as Yup from 'yup';
 
-export default function Search({ searchDataArray }) {
+export default function Search({ searchData, searchDataArray }) {
 
   const initialValues = {
     search: '',
@@ -18,6 +18,17 @@ export default function Search({ searchDataArray }) {
     searchArray: Yup.array().of(Yup.string().required('Required'))
   })
 
+  // ******************************************************
+  // Manual Search - NOT using Formik
+  const [manualSearch, setManualSearch] = useState('');
+
+  const handleChange = (e) => {
+    
+    setManualSearch(e.target.value);
+    searchData(manualSearch)
+
+  }
+
   return (
 
     <Formik
@@ -29,6 +40,18 @@ export default function Search({ searchDataArray }) {
       {({ values, isValid, isSubmitting }) => (
 
         <Form>
+
+          {/* MANUAL SEARCH */}
+          <div>
+            <label htmlFor="manualSearch">Manual Search</label>
+            <input 
+              type="text" 
+              id="manualSearch" 
+              name="Manual Search" 
+              value={manualSearch} 
+              onChange={handleChange} 
+            />
+          </div>
           
           <div>
             <label htmlFor="search">Search</label>
@@ -44,11 +67,20 @@ export default function Search({ searchDataArray }) {
               name="search" 
             >
               {props => {
-                
+                console.clear()
+                console.log(props)
                 const { field } = props;
+                const { onChange, values, onBlur, name } = field;
                 return (
                   <div>
-                    <input type="text" id="address" {...field} />
+                    <input 
+                      type="text" 
+                      id={name} 
+                      // onChange={onChange}
+                      // value={values}
+                      // onBlur={onBlur}
+                      {...field}
+                    />
                   </div>
                 )
                 
@@ -90,6 +122,7 @@ export default function Search({ searchDataArray }) {
           <button type="submit" disabled={!(isValid || isSubmitting)}>Search</button>
           {/* SHOWS THE CURRENT VALUES - DEVELOPMENT ONLY */}
           <pre>{JSON.stringify(values, null, 2)}</pre>
+          <pre>{JSON.stringify(manualSearch, null, 2)}</pre>
 
         </Form>
         

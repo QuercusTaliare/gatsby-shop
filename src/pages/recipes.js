@@ -58,6 +58,7 @@ export default function RecipesPage() {
         <h2>Recipes</h2>
 
         <Search 
+          searchData={searchData}
           searchDataArray={searchDataArray}
         />
 
