@@ -13,7 +13,7 @@ export default function RecipesPage() {
   const [queryResult, setQueryResult] = useState([]);
 
   // Create search index with utility function createSearchIndex
-  const recipeSearch = createSearchIndex('id', ['title'], recipes);
+  const recipeSearch = createSearchIndex('id', ['title', 'directions'], recipes);
 
   // SEARCH DATA FUNCTION
   // searchValue: string
@@ -63,17 +63,18 @@ export default function RecipesPage() {
 
         {!queryResult.length 
           ? 
-          recipes.map(recipe => (
-            <div key={recipe.title}>
-              <h3>{recipe.title}</h3>
-              <p>{recipe.directions}</p>
-              <img 
-                src={recipe.photoUrl} 
-                alt={recipe.title}
-                height="400"
-                />
-            </div>
-          ))
+          // recipes.map(recipe => (
+          //   <div key={recipe.title}>
+          //     <h3>{recipe.title}</h3>
+          //     <p>{recipe.directions}</p>
+          //     <img 
+          //       src={recipe.photoUrl} 
+          //       alt={recipe.title}
+          //       height="400"
+          //       />
+          //   </div>
+          // ))
+          null
           :
           queryResult.map(result => (
             <div key={result.id}>
