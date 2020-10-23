@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
 import * as Yup from 'yup';
 
@@ -21,13 +21,25 @@ export default function Search({ searchData, searchDataArray }) {
   // ******************************************************
   // Manual Search - NOT using Formik
   const [manualSearch, setManualSearch] = useState('');
+  const timeoutRef = React.useRef(null);
 
   const handleChange = (e) => {
     
     setManualSearch(e.target.value);
-    searchData(manualSearch)
 
   }
+
+  useEffect(() => {
+    
+    const timer = setTimeout(() => {
+      if (manualSearch !== '') {
+        searchData(manualSearch)
+      }
+    }, 1500)
+
+    return () => clearTimeout(timer);
+
+  }, [manualSearch])
 
   return (
 
