@@ -13,7 +13,12 @@ export default function GetRecipeData() {
         headers: {
           'Content-Type': 'application/json'
         }
-      }).then(res => res.json()).then(res => {
+      }).then(res => {
+        
+        console.log(res);
+        
+        return res.json()
+      }).then(res => {
         setRecipes(res)
       })
 
