@@ -15,14 +15,14 @@ export default function GetRecipeData() {
         }
       }).then(res => {
         
-        console.log(res);
+        // console.log(res);
         
         return res.json()
       }).then(res => {
         setRecipes(res)
       })
 
-      console.log("fetched!!!")
+      // console.log("fetched!!!")
 
     }
 

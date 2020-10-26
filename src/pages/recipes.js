@@ -4,8 +4,11 @@ import Layout from '../components/Layout';
 import Search from '../components/Search';
 import GetRecipeData from '../utils/getRecipeData';
 import createSearchIndex from '../utils/createSearchIndex';
+import GetProducts from '../utils/getProducts';
 
 export default function RecipesPage() {
+
+  const [ products ] = GetProducts();
 
   // Access recipe state held in Context
   const { recipes } = GetRecipeData();

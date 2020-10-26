@@ -79,8 +79,7 @@ export default function Search({ searchData, searchDataArray }) {
               name="search" 
             >
               {props => {
-                console.clear()
-                console.log(props)
+                
                 const { field } = props;
                 const { onChange, values, onBlur, name } = field;
                 return (
