@@ -1,0 +1,132 @@
+[
+  {
+    "name": "Featured Products",
+    "slug": "featured-products",
+    "rootUrl": ""
+  },
+  {
+    "name": "Market Boxes",
+    "slug": "market-boxes",
+    "rootUrl": ""
+  },
+  {
+    "name": "Produce",
+    "slug": "produce",
+    "rootUrl": ""
+  },  
+  {
+    "name": "Market Box",
+    "slug": "market-boxes",
+    "rootUrl": "produce"
+  },
+  {
+    "name": "Veggies",
+    "slug": "veggies",
+    "rootUrl": "produce"
+  },
+  {
+    "name": "Fruit",
+    "slug": "fruit",
+    "rootUrl": "produce"
+  },
+  {
+    "name": "Fresh Herbs",
+    "slug": "fresh-herbs",
+    "rootUrl": "produce"
+  },
+  {
+    "name": "Local Farm CSA Shares",
+    "slug": "local-farm-csa-shares",
+    "rootUrl": "produce"
+  }, 
+  {
+    "name": "Deals",
+    "slug": "deals",
+    "rootUrl": ""
+  },
+  {
+    "name": "Prepared Foods",
+    "slug": "prepared-foods",
+    "rootUrl": ""
+  },
+  {
+    "name": "Market Made",
+    "slug": "market-made",
+    "rootUrl": "prepared-foods"
+  },
+  {
+    "name": "Salads, Smoothies & Juices",
+    "slug": "salads-smoothies-and-juices",
+    "rootUrl": "prepared-foods/market-made"
+  },
+  {
+    "name": "Baking and Sweets",
+    "slug": "baking-and-sweets",
+    "rootUrl": "prepared-foods/market-made"
+  },
+  {
+    "name": "Catering/Special Orders",
+    "slug": "catering-and-special-orders",
+    "rootUrl": "prepared-foods/market-made"
+  },    
+  {
+    "name": "Berkeley North",
+    "slug": "berkeley-north",
+    "rootUrl": "prepared-foods"
+  },
+  {
+    "name": "Coffee, Tea & Chocolate",
+    "slug": "coffee-tea-and-chocolate",
+    "rootUrl": ""
+  },
+  {
+    "name": "Bakery",
+    "slug": "bakery",
+    "rootUrl": ""
+  },
+  {
+    "name": "Local Beer & Wine",
+    "slug": "local-beer-and-wine",
+    "rootUrl": ""
+  },
+  {
+    "name": "Grain & Grit",
+    "slug": "grain-and-grit",
+    "rootUrl": "local-beer-and-wine"
+  },
+  {
+    "name": "Fairweather",
+    "slug": "fairweather",
+    "rootUrl": "local-beer-and-wine"
+  },
+  {
+    "name": "Collective Arts",
+    "slug": "collective-arts",
+    "rootUrl": "local-beer-and-wine"
+  },
+  {
+    "name": "New Limburg Brewing",
+    "slug": "new-limburg-brewing",
+    "rootUrl": "local-beer-and-wine"
+  },
+  {
+    "name": "Rosewood",
+    "slug": "rosewood",
+    "rootUrl": "local-beer-and-wine"
+  },
+  {
+    "name": "Gruvi Non-Alcoholic",
+    "slug": "gruvi-non-alcoholic",
+    "rootUrl": "local-beer-and-wine"
+  },
+  {
+    "name": "Bench Brewing",
+    "slug": "bench-brewing",
+    "rootUrl": "local-beer-and-wine"
+  },
+  {
+    "name": "Spearhead Brewing Company",
+    "slug": "spearhead-brewing-company",
+    "rootUrl": "local-beer-and-wine"
+  }
+]

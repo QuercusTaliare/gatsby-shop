@@ -26,6 +26,14 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
         }
       }
 
+      allStoreNavigationFlatJson {
+        nodes {
+          name
+          slug
+          rootUrl
+        }
+      }
+
       products: allInventoryJson {
         totalCount
         nodes {
@@ -43,58 +51,38 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
   `)
   
   
-
-  // Create pages
-  data.allStoreNavigationJson.nodes.forEach(category => {
+  function dynamicSubCategories(slug, rootPath, name, subCategories) {
     
+    rootPath = `${rootPath}/${slug}`;
+
     actions.createPage({
-      component: productCategoriesTemplate,
-      path: `/store/${category.slug}`,
-      context: {
-        slug: category.slug,
-        title: category.name,
-      }
+        component: productCategoriesTemplate,
+        path: rootPath,
+        context: {
+          slug: slug,
+          title: name
+        }
     })
 
-    // One Level Deep - Sub Categories
-    // If the subCategory array has items in it, create subdomains for those
-    if (category.subCategories.length) {
-      category.subCategories.forEach(subCategory => {
+    if(subCategories) {
+      
+      subCategories.forEach(subCategory => {
 
-        actions.createPage({
-          component: productCategoriesTemplate,
-          path: `/store/${category.slug}/${subCategory.slug}`,
-          context: {
-            slug: subCategory.slug,
-            title: subCategory.name
-          }
-        })
-        
-        // Two Levels Deep - Sub Categories
-        // If the subCategories array within the subCategory has items, then those subdomains will created, too.
-        if (subCategory.subCategories.length) {
-
-          subCategory.subCategories.forEach(twoSubCategory => {
-
-            actions.createPage({
-              component: productCategoriesTemplate,
-              path: `/store/${category.slug}/${subCategory.slug}/${twoSubCategory.slug}`,
-              context: {
-                slug: twoSubCategory.slug,
-                title: twoSubCategory.name
-              }
-            })
-
-          })
-
-        } // Two Levels Deep - Sub Categories if ends
+        dynamicSubCategories(subCategory.slug, rootPath, subCategory.name, subCategory.subCategories)
 
       })
 
-    } // One Level Deep - Sub Categories if ends
+    }
 
-  }) // Create pages for Product Categories ends
+  }
 
+  // Create pages
+  data.allStoreNavigationJson.nodes.forEach(category => {
+
+    dynamicSubCategories(category.slug, '/store', category.name, category.subCategories); 
+  
+  })
+    
 } // Turn Categories Into Pages function ENDS
 
 
@@ -137,6 +125,7 @@ const turnProductsIntoPages = async ({ graphql, actions }) => {
   })
 
 } // Turn Products Into Pages function ENDS
+
 
 // CREATE ALL PAGES
 module.exports.createPages = async (params) => {
