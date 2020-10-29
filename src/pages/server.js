@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react';
+import createSearchIndex from '../utils/createSearchIndex';
 
 export default function ServerPage(props) {
   
-  const url = 'https://cors-anywhere.herokuapp.com/http://159.203.25.245/api/products';
+  const url = `https://cors-anywhere.herokuapp.com/${process.env.GATSBY_SERVER_PATH}/products`;
   const [products, setProducts] = useState([]);
   const [detailedProducts, setDetailedProducts] = useState([]);
 
@@ -31,69 +32,95 @@ export default function ServerPage(props) {
 
     fetchData(url);
 
+    console.log("basic products effect")
+
   }, [])
 
 
   // Lifecycle for fetching detailed product info
   useEffect(() => {
-    
-    // Function to get all the product tokens
-    function getProductTokens() {
-      const productTokens = products.map(product => product.token);
-      return productTokens;
-    }
 
-    // All the product tokens
-    const productTokens = getProductTokens();
+    if (products.length) {
 
-    // Function to fetch individual detailed product info
-    async function fetchProductInfo(url, token) {
-    
-      let productInfo;
+      // Function to get all the product tokens
+      function getProductTokens() {
+        const productTokens = products.map(product => product.token);
+        return productTokens;
+      }
 
-      await fetch(`${url}/${token}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(res => res.json())
-        .then(data => {
-          productInfo = data.products;
-        })
-        .catch(error => {
-          console.log(`There is an error: ${error}`);
-        })
-        
-      return productInfo;
+      // All the product tokens
+      const productTokens = getProductTokens();
+
+      // Function to fetch individual detailed product info
+      async function fetchProductInfo(url, token) {
       
-    }
+        let productInfo;
 
-    // Function to fetch all detailed product info
-    async function getDetailedProductInfo(productTokens) {
-      const requests = productTokens.map(token => {
-        return fetchProductInfo(url, token)
-          .then((productInfo) => {
-            return productInfo
+        await fetch(`${url}/${token}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+          .then(res => res.json())
+          .then(data => {
+            productInfo = data.products;
           })
-      })
+          .catch(error => {
+            console.log(`There is an error: ${error}`);
+          })
+          
+        return productInfo;
+        
+      }
 
-      return Promise.all(requests);
+      // Function to fetch all detailed product info
+      async function getDetailedProductInfo(productTokens) {
+        const requests = productTokens.map(token => {
+          return fetchProductInfo(url, token)
+            .then((productInfo) => {
+              return productInfo
+            })
+        })
 
+        return Promise.all(requests);
+
+      }
+
+      // Call function to populate the detailedProducts array
+      getDetailedProductInfo(productTokens)
+        .then(results => {
+          
+          setDetailedProducts(results);
+
+        })
+        .catch(error => console.log(error))
+      
+      console.log("detailed products effect")
+    
     }
 
-    // Call function to populate the detailedProducts array
-    getDetailedProductInfo(productTokens)
-      .then(results => {
-        // results.forEach(result => {
-        //   detailedProducts.push(result);
-        // })
-        setDetailedProducts(results);
-
-      })
-      .catch(error => console.log(error))
+    
 
   }, [products])
+
+  useEffect(() => {
+
+    if (detailedProducts.length) {
+
+      const categorySearch = createSearchIndex('token', ['categories'], detailedProducts);
+      
+      const result = categorySearch.search('coffee');
+      
+      console.log(result);
+
+    } 
+
+  }, [detailedProducts])
+
+
+
+
 
   return (
     <>
