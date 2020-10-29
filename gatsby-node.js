@@ -63,23 +63,12 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
           title: name
         }
     })
-    
-    // console.log(JSON.stringify(subCategories));
 
-    if(subCategories.length) {
-
-      console.log(JSON.stringify(subCategories));
-
-      // GETTING ERROR THAT SUBCATEGORIES IS UNDEFINED AT THE LOWEST LEVEL
-
+    if(subCategories) {
+      
       subCategories.forEach(subCategory => {
 
         dynamicSubCategories(subCategory.slug, rootPath, subCategory.name, subCategory.subCategories)
-       
-        // console.log(`Slug: ${category.slug}`);
-        // console.log(`Root: ${rootPath}`);
-        // console.log(`Name: ${category.name}`);
-        // console.log(`Categories: ${JSON.stringify(category.subCategories)}`);
 
       })
 
@@ -87,43 +76,33 @@ const turnCategoriesIntoNavigation = async ({ graphql, actions }) => {
 
   }
 
-  data.allStoreNavigationFlatJson.nodes.forEach(category => {
+  // data.allStoreNavigationFlatJson.nodes.forEach(category => {
 
 
-    actions.createPage({
-      component: productCategoriesTemplate,
-      path: `/store${category.rootUrl ? `/${category.rootUrl}` : ``}/${category.slug}`,
-      context: {
-        slug: category.slug,
-        title: category.name
-      }
-    })
+  //   actions.createPage({
+  //     component: productCategoriesTemplate,
+  //     path: `/store${category.rootUrl ? `/${category.rootUrl}` : ``}/${category.slug}`,
+  //     context: {
+  //       slug: category.slug,
+  //       title: category.name
+  //     }
+  //   })
 
 
-  })
+  // })
 
 
   // Create pages
-  // data.allStoreNavigationJson.nodes.forEach(category => {
+  data.allStoreNavigationJson.nodes.forEach(category => {
 
-
-
-
-    // let rootPath = `/store`;
-    
-    // actions.createPage({
-    //   component: productCategoriesTemplate,
-    //   path: `/store/${category.slug}`,
-    //   context: {
-    //     slug: category.slug,
-    //     title: category.name,
-    //   }
-    // })
-
-    // dynamicSubCategories(category.slug, '/store', category.name, category.subCategories); 
+    dynamicSubCategories(category.slug, '/store', category.name, category.subCategories); 
+  
+  })
     
     //*********************************************************************** */
 
+
+  // data.allStoreNavigationJson.nodes.forEach(category => {
   //   // One Level Deep - Sub Categories
   //   // If the subCategory array has items in it, create subdomains for those
   //   if (category.subCategories.length) {
@@ -205,6 +184,16 @@ const turnProductsIntoPages = async ({ graphql, actions }) => {
   })
 
 } // Turn Products Into Pages function ENDS
+
+
+// module.exports.createSchemaCustomization = ({ actions }) => {
+//   actions.createTypes([
+//     `type allStoreNavigation implements Node @infer {
+//       subCategories: [Node]
+//     }`
+//   ])
+// }
+
 
 // CREATE ALL PAGES
 module.exports.createPages = async (params) => {
