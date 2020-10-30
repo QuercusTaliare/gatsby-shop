@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import createSearchIndex from '../utils/createSearchIndex';
 
 export default function ServerPage(props) {
@@ -6,6 +6,7 @@ export default function ServerPage(props) {
   const url = `https://cors-anywhere.herokuapp.com/${process.env.GATSBY_SERVER_PATH}/products`;
   const [products, setProducts] = useState([]);
   const [detailedProducts, setDetailedProducts] = useState([]);
+  const [categoryResult, setCategoryResult] = useState([]);
 
   // Lifecycle for fetching basic product info
   useEffect(() => {
@@ -90,7 +91,7 @@ export default function ServerPage(props) {
       // Call function to populate the detailedProducts array
       getDetailedProductInfo(productTokens)
         .then(results => {
-          
+
           setDetailedProducts(results);
 
         })
@@ -98,6 +99,8 @@ export default function ServerPage(props) {
       
       console.log("detailed products effect")
     
+    } else { 
+      console.log("didn't run detailed products effect")
     }
 
     
@@ -112,9 +115,15 @@ export default function ServerPage(props) {
       
       const result = categorySearch.search('coffee');
       
-      console.log(result);
+      setCategoryResult(result);
 
+      console.log("got category result")
+
+    } else {
+      console.log("didn't get category result")
     } 
+
+
 
   }, [detailedProducts])
 
@@ -128,7 +137,41 @@ export default function ServerPage(props) {
       <h2>Server Test</h2>
       <ul>
 
-        {(products && !detailedProducts.length) 
+
+        {
+          products.map(product => {
+            return (
+              <li key={product.token}>
+                <h3>{product.name}</h3>
+                <p>{product.price}</p>
+                {detailedProducts.length 
+                  ? 
+                  detailedProducts.filter(detailedProduct => {
+                    if (detailedProduct.token === product.token) {
+                      return detailedProduct
+                    }
+                  }).map(detailedProduct => {
+                    return <p>{detailedProduct.desc}</p>
+                  })
+                  :
+                  null
+                
+                }
+              </li>
+            )
+          })
+        }
+        {
+          categoryResult.map(result => (
+            <li key={result.token}>
+              <h3>{result.name}</h3>
+              <p>{result.token}</p>
+              <p>{result.price}</p>
+            </li>
+          ))
+        }
+
+        {/* {(products && !detailedProducts.length) 
         ? 
           products.map(product => {
             return (
@@ -148,7 +191,7 @@ export default function ServerPage(props) {
               </li>
             )
           })
-        } 
+        }  */}
 
       </ul>
 
