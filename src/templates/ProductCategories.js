@@ -8,6 +8,8 @@ import StoreLayout from '../components/StoreLayout';
 import manageOrder from '../utils/manageOrder';
 // import Pagination from '../components/Pagination';
 
+// TEST CHANGE
+
 const ProductCategories = (props) => {
 
   const { order, addToOrder, removeFromOrder } = manageOrder();
